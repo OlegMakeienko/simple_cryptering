@@ -27,7 +27,8 @@ public class Cryptography {
         for(char character : text.toCharArray()) {
             if(Character.isLetter(character)) {
                 char base = Character.isUpperCase(character) ? 'A' : 'a';
-                result.append((char) ((character - base - SHIFT) % 26 + base));
+                // Justering för att hantera negativa resultat
+                result.append((char) ((character - base - SHIFT + 26) % 26 + base));
             } else {
                 result.append(character);
             }
