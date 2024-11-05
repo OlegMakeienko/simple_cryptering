@@ -42,8 +42,24 @@ class CryptographyTest {
     @Test
     @DisplayName("Leaves non-alphabetic characters in the encrypted text unchanged, only English letters are decrypted")
     public void testDecryptWithNonAlphabeticCharacters() {
-        String input = "Hello, World! 123";
-        String expectedOutput = "Khoor, Zruog! 123";
+        String input = "Khoor, Zruog! 123";
+        String expectedOutput = "Hello, World! 123";
+        assertEquals(expectedOutput, Cryptography.decrypt(input));
+    }
+
+    @Test
+    @DisplayName("Encrypts letters correctly with a Caesar shift of 3 steps")
+    public void testEncryptWithAlphabeticCharacters() {
+        String input = "ABCxyz";
+        String expectedOutput = "DEFabc";
+        assertEquals(expectedOutput, Cryptography.encrypt(input));
+    }
+
+    @Test
+    @DisplayName("Decrypts letters correctly with a Caesar shift of 3 steps")
+    public void testDecryptWithAlphabeticCharacters() {
+        String input = "DEFabc";
+        String expectedOutput = "ABCxyz";
         assertEquals(expectedOutput, Cryptography.decrypt(input));
     }
 }
