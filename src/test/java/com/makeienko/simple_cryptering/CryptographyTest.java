@@ -30,4 +30,20 @@ class CryptographyTest {
     public void testDecryptWithNull() {
         assertEquals("", Cryptography.decrypt(null));
     }
+
+    @Test
+    @DisplayName("Leaves non-alphabetic characters in the encrypted text unchanged, only English letters are encrypted")
+    public void testEncryptWithNonAlphabeticCharacters() {
+        String input = "Hello, World! 123";
+        String expectedOutput = "Khoor, Zruog! 123";
+        assertEquals(expectedOutput, Cryptography.encrypt(input));
+    }
+
+    @Test
+    @DisplayName("Leaves non-alphabetic characters in the encrypted text unchanged, only English letters are decrypted")
+    public void testDecryptWithNonAlphabeticCharacters() {
+        String input = "Hello, World! 123";
+        String expectedOutput = "Khoor, Zruog! 123";
+        assertEquals(expectedOutput, Cryptography.decrypt(input));
+    }
 }
