@@ -18,4 +18,16 @@ class CryptographyTest {
     public void testDecryptWithEmptyString() {
         assertEquals("", Cryptography.decrypt(""));
     }
+
+    @Test
+    @DisplayName("Correctly handles null value by returning an empty string (encryption)")
+    public void testEncryptWithNull() {
+        assertEquals("", Cryptography.encrypt(null));
+    }
+
+    @Test
+    @DisplayName("Correctly handles null value by returning an empty string (decryption)")
+    public void testDecryptWithNull() {
+        assertEquals("", Cryptography.decrypt(null));
+    }
 }
