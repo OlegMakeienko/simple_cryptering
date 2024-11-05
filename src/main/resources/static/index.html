@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Encryption App</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    input, button { margin: 0.5em 0; }
+    #output { font-weight: bold; margin-top: 1em; }
+  </style>
+</head>
+<body>
+
+<h1>Simple Text Encryption and Decryption</h1>
+
+<div>
+  <label for="inputText">Enter text:</label>
+  <input type="text" id="inputText" placeholder="Type your text here">
+</div>
+
+<div>
+  <button onclick="encryptText()">Encrypt</button>
+  <button onclick="decryptText()">Decrypt</button>
+</div>
+
+<div id="output">Result: <span id="resultText"></span></div>
+
+<script>
+  const encryptText = async () => {
+    const text = document.getElementById('inputText').value;
+    if (text) {
+      const response = await fetch(`/api/cryptography/encrypt?text=${encodeURIComponent(text)}`);
+      const result = await response.text();
+      document.getElementById('resultText').textContent = result;
+    } else {
+      alert('Please enter some text.');
+    }
+  };
+
+  const decryptText = async () => {
+    const text = document.getElementById('inputText').value;
+    if (text) {
+      const response = await fetch(`/api/cryptography/decrypt?text=${encodeURIComponent(text)}`);
+      const result = await response.text();
+      document.getElementById('resultText').textContent = result;
+    } else {
+      alert('Please enter some text.');
+    }
+  };
+</script>
+
+</body>
+</html>
