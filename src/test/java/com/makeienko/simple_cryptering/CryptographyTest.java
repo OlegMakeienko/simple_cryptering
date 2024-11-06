@@ -79,5 +79,17 @@ class CryptographyTest {
         assertEquals(expectedOutput, Cryptography.decrypt(input));
     }
 
+    @Test
+    @DisplayName("Cipher text is different from the original text")
+    public void testEncryptedTextIsDifferentFromOriginal() {
+        String input = "Encryption";
+        assertNotEquals(input, Cryptography.encrypt(input));
+    }
 
+    @Test
+    @DisplayName("Unencrypted text is different from the original text")
+    public void testDecryptedTextIsDifferentFromOriginal() {
+        String input = "Decryption";
+        assertNotEquals(input, Cryptography.decrypt(input));
+    }
 }
