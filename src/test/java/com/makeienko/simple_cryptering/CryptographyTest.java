@@ -62,4 +62,22 @@ class CryptographyTest {
         String expectedOutput = "ABCxyz";
         assertEquals(expectedOutput, Cryptography.decrypt(input));
     }
+
+    @Test
+    @DisplayName("Correctly handles mixed upper and lower case in long text when encrypting")
+    public void testEncryptWithMixedCase() {
+        String input = "Caesar, Caesar: Caesar Caesar Caesar. Caesar Caesar";
+        String expectedOutput = "Fdhvdu, Fdhvdu: Fdhvdu Fdhvdu Fdhvdu. Fdhvdu Fdhvdu";
+        assertEquals(expectedOutput, Cryptography.encrypt(input));
+    }
+
+    @Test
+    @DisplayName("Correctly handles mixed upper and lower case in long text when decrypting")
+    public void testDecryptWithMixedCase() {
+        String input = "Fdhvdu, Fdhvdu: Fdhvdu Fdhvdu Fdhvdu. Fdhvdu Fdhvdu";
+        String expectedOutput = "Caesar, Caesar: Caesar Caesar Caesar. Caesar Caesar";
+        assertEquals(expectedOutput, Cryptography.decrypt(input));
+    }
+
+
 }
